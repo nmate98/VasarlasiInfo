@@ -23,8 +23,8 @@ export class MegerositDialogComponent implements OnInit {
     this.telefonszam = this.data.control.get("telefonszam").value;
     this.orszag = this.data.control.get("orszag").value;
     this.iranyitoszam = this.data.control.get("iranyitoszam").value;
-    this.szamlazasinev = this.data.control.get("opcionalis.szamlazasinev").value != null ? this.data.control.get("opcionalis.szamlazasinev").value : "";
-    this.adoszam = this.data.control.get("opcionalis.adoszam").value != null ? this.data.control.get("opcionalis.adoszam").value : "";
+    this.szamlazasinev = this.data.control.get("szamlazasinev").value != null ? this.data.control.get("szamlazasinev").value : "";
+    this.adoszam = this.data.control.get("adoszam").value != null ? this.data.control.get("adoszam").value : "";
   }
   
 

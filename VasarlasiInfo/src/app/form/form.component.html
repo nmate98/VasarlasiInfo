@@ -1,0 +1,119 @@
+<div class="container-fluid">
+    <h2 align="center">Szállítási adatok megadása</h2>
+    <small>Az összes mező kitöltése kötelező!</small>
+    <form [formGroup]='form'>
+        <mat-grid-list cols=2 rowHeight="75px">
+            <mat-grid-tile>
+                <mat-form-field>
+                    <mat-label>Email-cím</mat-label>
+                    <input formControlName="email" matInput>
+                    <mat-error *ngIf="email.errors?.required" class="text-danger">A mező kitöltése kötelező</mat-error>
+                    <mat-error *ngIf="email.errors?.email" class="text-danger">Helytelen formátumú email</mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field onpaste="return false">
+                    <mat-label>Email-cím megerősítése</mat-label>
+                    <input formControlName="emailMeg" matInput [errorStateMatcher]="errorMatcher">
+                    <mat-error *ngIf="emailMeg.errors?.required" class="text-danger">A mező kitöltése kötelező
+                    </mat-error>
+                    <mat-error *ngIf="form.errors?.helytelen" class="text-danger">Nem megegyező email-címek</mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field>
+                    <mat-label>Vezetéknév</mat-label>
+                    <input formControlName="vezeteknev" matInput>
+                    <mat-error *ngIf="vezeteknev.errors?.required" class="text-danger">A mező kitöltése kötelező
+                    </mat-error>
+                    <mat-error *ngIf="vezeteknev.errors?.minlength" class="text-danger">Legalább 2 karakter megadása
+                        kötelező</mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field>
+                    <mat-label>Keresztnév</mat-label>
+                    <input formControlName="keresztnev" matInput>
+
+                    <mat-error *ngIf="keresztnev.errors?.required" class="text-danger">A mező kitöltése kötelező
+                    </mat-error>
+                    <mat-error *ngIf="keresztnev.errors?.minlength" class="text-danger">Legalább 3 karakter megadása
+                        kötelező</mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field>
+                    <mat-label>Telefonszám</mat-label>
+                    <input formControlName="telefonszam" matInput>
+                    <mat-error *ngIf="telefonszam.errors?.required" class="text-danger">A mező kitöltése kötelező
+                    </mat-error>
+                    <mat-error *ngIf="telefonszam.errors?.helytelen && telefonszam.value != ''" class="text-danger">A
+                        telefonszám csak számokat
+                        tartalmazhat</mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile colspan = "2">
+                <mat-form-field>
+                    <mat-label>Ország</mat-label>
+                    <mat-select formControlName="orszag">
+                        <mat-option value="Magyarország">Magyarország</mat-option>
+                        <mat-option value="Ausztria">Ausztria</mat-option>
+                        <mat-option value="Németország">Németország</mat-option>
+                        <mat-option value="Hollandia">Hollandia</mat-option>
+                        <mat-option value="Anglia">Anglia</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="orszag.errors?.required" class="text-danger">A mező kitöltése kötelező</mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field>
+                    <mat-label>Irányítószám</mat-label>
+                    <input formControlName="iranyitoszam" matInput>
+                    <mat-error *ngIf="iranyitoszam.errors?.required" class="text-danger">A mező kitöltése kötelező
+                    </mat-error>
+                    <mat-error *ngIf="iranyitoszam.errors?.minlength || iranyitoszam.errors?.maxlength"
+                        class="text-danger">
+                        A
+                        mező pontosan 4 számjegyet tartalmazzon</mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field>
+                    <mat-label>Város</mat-label>
+                    <input formControlName="varos" matInput>
+                    <mat-error *ngIf="varos.errors?.required" class="text-danger">A mező kitöltése kötelező</mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile colspan="2" >
+                <mat-checkbox formControlName="elter">
+                    A számlázási adatok eltérnek a szállítási adatoktól.
+                </mat-checkbox>
+            </mat-grid-tile>
+            <mat-grid-tile *ngIf = "form.value.elter">
+                <mat-form-field>
+                    <mat-label>Számlázási név</mat-label>
+                    <input formControlName="szamlazasinev" matInput>
+                    <mat-error *ngIf="szamlazasinev.errors?.required" class="text-danger">A mező kitöltése
+                        kötelező</mat-error>
+                    <mat-error *ngIf="szamlazasinev.errors?.minlength" class="text-danger">Legalább 5 karakter
+                        megadása
+                        kötelező</mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile *ngIf = "form.value.elter">
+                <mat-form-field>
+                    <mat-label>Adószám</mat-label>
+                    <input formControlName="adoszam" matInput>
+                    <mat-error *ngIf="adoszam.errors?.required" class="text-danger">A mező kitöltése kötelező
+                    </mat-error>
+                    <mat-error *ngIf="adoszam.errors?.helytelen" class="text-danger">Az adószám formátuma:
+                        XXXXXXXX-X-XX</mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+        </mat-grid-list>
+        
+    </form>
+    <div>
+        <button mat-raised-button (click)="openDialog()">Küldés</button>
+    </div>
+</div>

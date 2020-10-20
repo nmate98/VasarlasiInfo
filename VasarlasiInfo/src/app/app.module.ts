@@ -6,12 +6,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MegerositDialogComponent } from './megerosit-dialog/megerosit-dialog.component';
-import { VarosokService } from './service/varosok.service'
+import { VarosokService } from './service/varosok.service';
+import { FormComponent } from './form/form.component'
 
 @NgModule({
   declarations: [
     AppComponent,
-    MegerositDialogComponent
+    MegerositDialogComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,

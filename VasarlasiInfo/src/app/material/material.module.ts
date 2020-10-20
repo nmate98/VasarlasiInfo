@@ -6,7 +6,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select'
-import {MatSnackBarModule} from '@angular/material/snack-bar'
+import { MatSnackBarModule } from '@angular/material/snack-bar'
+import { MatGridListModule } from '@angular/material/grid-list'
 
 const MatComponents = [
   MatButtonModule,
@@ -16,7 +17,8 @@ const MatComponents = [
   MatAutocompleteModule,
   MatDialogModule,
   MatSelectModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatGridListModule
 ]
 
 @NgModule({
