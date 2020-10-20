@@ -1,0 +1,125 @@
+<div class="container-fluid">
+    <h2>Szállítási adatok megadása</h2>
+    <small>Az összes mező kitöltése kötelező!</small>
+    <form [formGroup]='form'>
+        <div>
+            <mat-form-field>
+                <mat-label>Email-cím</mat-label>
+                <input formControlName="email" matInput>
+            </mat-form-field>
+            <div *ngIf="email.invalid && email.touched">
+                <small *ngIf="email.errors?.required" class="text-danger">A mező kitöltése kötelező</small>
+                <small *ngIf="email.errors?.email" class="text-danger">Helytelen formátumú email-cím</small>
+            </div>
+        </div>
+        <div>
+            <mat-form-field onpaste="return false">
+                <mat-label>Email-cím megerősítése</mat-label>
+                <input [class.is-invalid] = "form.errors?.helytelen" formControlName="emailMeg" matInput>
+            </mat-form-field>
+            <div *ngIf="(emailMeg.invalid || form.errors?.helytelen) && emailMeg.touched">
+                <small *ngIf="emailMeg.errors?.required" class="text-danger">A mező kitöltése kötelező</small>
+                <small *ngIf="form.errors?.helytelen" class="text-danger">Nem megegyező email-címek</small>
+            </div>
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-label>Vezetéknév</mat-label>
+                <input formControlName="vezeteknev" matInput>
+            </mat-form-field>
+            <div *ngIf="vezeteknev.invalid && vezeteknev.touched">
+                <small *ngIf="vezeteknev.errors?.required" class="text-danger">A mező kitöltése kötelező</small>
+                <small *ngIf="vezeteknev.errors?.minlength" class="text-danger">Legalább 2 karakter megadása
+                    kötelező</small>
+            </div>
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-label>Keresztnév</mat-label>
+                <input formControlName="keresztnev" matInput>
+            </mat-form-field>
+            <div *ngIf="keresztnev.invalid && keresztnev.touched">
+                <small *ngIf="keresztnev.errors?.required" class="text-danger">A mező kitöltése kötelező</small>
+                <small *ngIf="keresztnev.errors?.minlength" class="text-danger">Legalább 3 karakter megadása
+                    kötelező</small>
+            </div>
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-label>Telefonszám</mat-label>
+                <input formControlName="telefonszam" matInput>
+            </mat-form-field>
+            <div *ngIf="telefonszam.invalid && telefonszam.touched">
+                <small *ngIf="telefonszam.errors?.required" class="text-danger">A mező kitöltése kötelező</small>
+                <small *ngIf="telefonszam.errors?.helytelen && telefonszam.value != ''" class="text-danger">A telefonszám csak számokat
+                    tartalmazhat</small>
+            </div>
+        </div>
+        <div>
+            <mat-label>Ország</mat-label>
+            <mat-select formControlName="orszag">
+                <mat-option value="Magyarország">Magyarország</mat-option>
+                <mat-option value="Ausztria">Ausztria</mat-option>
+                <mat-option value="Németország">Németország</mat-option>
+                <mat-option value="Hollandia">Hollandia</mat-option>
+                <mat-option value="Anglia">Anglia</mat-option>
+            </mat-select>
+            <div *ngIf="orszag.invalid && orszag.touched">
+                <small *ngIf="orszag.errors?.required" class="text-danger">A mező kitöltése kötelező</small>
+            </div>
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-label>Irányítószám</mat-label>
+                <input formControlName="iranyitoszam" matInput>
+            </mat-form-field>
+            <div *ngIf="iranyitoszam.invalid && iranyitoszam.touched">
+                <small *ngIf="iranyitoszam.errors?.required" class="text-danger">A mező kitöltése kötelező</small>
+                <small *ngIf="iranyitoszam.errors?.minlength || iranyitoszam.errors?.maxlength" class="text-danger">A
+                    mező pontosan 4 számjegyet tartalmazzon</small>
+            </div>
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-label>Város</mat-label>
+                <input formControlName="varos" matInput>
+            </mat-form-field>
+            <div *ngIf="varos.invalid && varos.touched">
+                <small *ngIf="varos.errors?.required" class="text-danger">A mező kitöltése kötelező</small>
+            </div>
+        </div>
+        <div>
+            <mat-checkbox formControlName="elter">
+                A számlázási adatok eltérnek a szállítási adatoktól.
+            </mat-checkbox>
+        </div>
+        <div formGroupName="opcionalis" *ngIf="form.value.elter">
+            <div>
+                <mat-form-field>
+                    <mat-label>Számlázási név</mat-label>
+                    <input formControlName="szamlazasinev" matInput>
+                </mat-form-field>
+                <div *ngIf="szamlazasinev.invalid && szamlazasinev.touched">
+                    <small *ngIf="szamlazasinev.errors?.required" class="text-danger">A mező kitöltése
+                        kötelező</small>
+                    <small *ngIf="szamlazasinev.errors?.minlength" class="text-danger">Legalább 5 karakter megadása
+                        kötelező</small>
+                </div>
+            </div>
+            <div>
+                <mat-form-field>
+                    <mat-label>Adószám</mat-label>
+                    <input formControlName="adoszam" matInput>
+                </mat-form-field>
+                <div *ngIf="adoszam.invalid && adoszam.touched">
+                    <small *ngIf="adoszam.errors?.required" class="text-danger">A mező kitöltése kötelező</small>
+                    <small *ngIf="adoszam.errors?.helytelen" class="text-danger">Az adószám formátuma:
+                        XXXXXXXX-X-XX</small>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div>
+        <button mat-raised-button (click)="openDialog()">Küldés</button>
+    </div>
+</div>

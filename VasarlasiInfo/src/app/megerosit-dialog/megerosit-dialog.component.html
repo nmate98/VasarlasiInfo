@@ -1,0 +1,14 @@
+<h2>Ellenőrzés</h2>
+<div>
+    <p>Név: {{vezeteknev+" "+keresztnev}}</p>
+    <p>Email: {{email}}</p>
+    <p>Telefonszám: {{telefonszam}}</p>
+    <p>Ország: {{orszag}}</p>
+    <p>Irányítószám: {{iranyitoszam}}</p>
+    <p *ngIf="szamlazasinev != ''">Számlázási név: {{szamlazasinev}}</p>
+    <p *ngIf="adoszam != ''">Adószám: {{adoszam}}</p>
+</div>
+<div>
+    <button mat-raised-button mat-dialog-close = "modosit">Módosítás</button>
+    <button mat-raised-button mat-dialog-close = "kesz">Helyes</button>
+</div>
